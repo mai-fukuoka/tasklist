@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <title>Tasklist</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        
     </head>
 
     <body>
@@ -19,7 +21,13 @@
                 <div class="collapse navbar-collapse" id="nav-bar">
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
+                        @if(Auth::check())
+                        <li>{!! link_to_route('logout.get','ログアウト') !!}</li>
+                        @else
+                        <li class="nav-item">{!! link_to_route('login','ログイン',[],['class'=>'nav-link']) !!}</li>
+                        <li class="nav-item">{!! link_to_route('signup.get','ユーザー登録',[],['class'=>'nav-link']) !!}</li>
                         <li class="nav-item">{!! link_to_route('tasks.create','新規タスクの投稿',[],['class'=>'nav-link']) !!}</li>
+                        @endif
                     </ul>
                 </div>
             </nav>
